@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Happy Minds</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<!--LOGIN -->
+<div id="loginScreen">
+  <div class="login-left">
+    <div class="login-left-inner">
+      <span class="logo-text">Happy Minds</span>
+      <p class="tagline">Education for every child.<br>This portal is for staff &amp; administrators only.</p>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="feat-text"><strong>Volunteer management</strong><span>Review &amp; approve applications</span></div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        </div>
+        <div class="feat-text"><strong>Donation records</strong><span>Track every contribution</span></div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <div class="feat-text"><strong>Live actions</strong><span>Approve, reject &amp; send receipts</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="login-right">
+    <div class="login-card">
+      <p class="eyebrow">Staff portal</p>
+      <h2>Welcome back</h2>
+      <p class="sub">Sign in to manage volunteers and donations.</p>
+      <label class="lbl">Username</label>
+      <input class="linput" type="text" id="loginUser" placeholder="Enter username" autocomplete="off">
+      <label class="lbl">Password</label>
+      <input class="linput" type="password" id="loginPass" placeholder="••••••••">
+      <button class="login-btn" onclick="doLogin()">Sign in →</button>
+      <p id="loginError">Incorrect username or password. Please try again.</p>
+      <p class="login-hint">Demo credentials: <strong>admin</strong> / <strong>happyminds2026</strong></p>
+    </div>
+
+  </div>
+</div>
+
+<!--DASHBOARD-->
+<div id="adminDashboard">
+  <div class="admin-layout">
+
+    <!-- Sidebar -->
+    <aside class="admin-sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <span class="logo-text">Happy Minds <span class="admin-pill">ADMIN</span></span>
+      </div>
+
+      <nav class="sidebar-nav">
+        <p class="sidebar-section-label">Management</p>
+        <a id="nav-volunteers" class="active" onclick="showTab('volunteers',this)">
+          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <span>Volunteers</span>
+          <span class="nav-badge" id="pendingBadge">3</span>
+        </a>
+        <a id="nav-donations" onclick="showTab('donations',this)">
+          <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+          <span>Donations</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="index.html">
+          <svg viewBox="0 0 24 24"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+          <span>Back to site</span>
+        </a>
+        <a href="#" onclick="doLogout()">
+          <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span>Sign out</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <div class="admin-main">
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <h1 id="pageTitle">Volunteer applications</h1>
+        </div>
+        <div class="topbar-right">
+          <span class="topbar-date" id="todayDate"></span>
+          <div class="admin-user">
+            <span>Admin</span>
+            <div class="admin-avatar">AD</div>
+          </div>
+        </div>
+      </header>
+
+      <div class="admin-content">
+
+        <!--VOLUNTEERS TAB-->
+        <div id="tab-volunteers" class="tab-panel active">
+          <div class="summary-cards">
+            <div class="summary-card">
+              <div class="stat-icon orange"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <div class="stat-body"><div class="stat-label">Total</div><div class="stat-value" id="vol-total">0</div></div>
+            </div>
+            <div class="summary-card">
+              <div class="stat-icon teal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div class="stat-body"><div class="stat-label">Pending</div><div class="stat-value" id="vol-pending">0</div><div class="stat-sub" id="vol-pending-sub"></div></div>
+            </div>
+            <div class="summary-card">
+              <div class="stat-icon green"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+              <div class="stat-body"><div class="stat-label">Approved</div><div class="stat-value" id="vol-approved">0</div></div>
+            </div>
+            <div class="summary-card">
+              <div class="stat-icon blue"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
+              <div class="stat-body"><div class="stat-label">This month</div><div class="stat-value" id="vol-month">0</div></div>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3>Applications</h3>
+              <div class="filter-bar">
+                <select class="fselect" id="vol-filter" onchange="renderVolunteers()">
+                  <option value="all">All statuses</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Approved">Approved</option>
+                  <option value="Rejected">Rejected</option>
+                </select>
+                <select class="fselect" id="vol-role-filter" onchange="renderVolunteers()">
+                  <option value="all">All roles</option>
+                  <option value="Teaching Assistant">Teaching Assistant</option>
+                  <option value="Mentor">Mentor</option>
+                  <option value="Event Coordinator">Event Coordinator</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Name</th><th>Email</th><th>Phone</th><th>Role</th><th>Date</th><th>Status</th><th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="volTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Role breakdown -->
+          <div class="admin-card">
+            <div class="admin-card-header"><h3>Applications by role</h3></div>
+            <div style="padding: 20px 24px;" id="roleBreakdown"></div>
+          </div>
+        </div>
+
+        <!-- DONATIONS TAB -->
+        <div id="tab-donations" class="tab-panel">
+          <div class="summary-cards">
+            <div class="summary-card">
+              <div class="stat-icon orange"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+              <div class="stat-body"><div class="stat-label">Total raised</div><div class="stat-value" id="don-total">R0</div></div>
+            </div>
+            <div class="summary-card">
+              <div class="stat-icon green"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+              <div class="stat-body"><div class="stat-label">This month</div><div class="stat-value" id="don-month">R0</div></div>
+            </div>
+            <div class="summary-card">
+              <div class="stat-icon blue"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+              <div class="stat-body"><div class="stat-label">Total donors</div><div class="stat-value" id="don-count">0</div></div>
+            </div>
+            <div class="summary-card">
+              <div class="stat-icon teal"><svg viewBox="0 0 24 24"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></div>
+              <div class="stat-body"><div class="stat-label">Avg donation</div><div class="stat-value" id="don-avg">R0</div></div>
+            </div>
+          </div>
+
+          <div class="admin-card">
+            <div class="admin-card-header">
+              <h3>Donation records</h3>
+              <div class="filter-bar">
+                <select class="fselect" id="don-filter" onchange="renderDonations()">
+                  <option value="all">All types</option>
+                  <option value="One-time">One-time</option>
+                  <option value="Monthly">Monthly</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr><th>Donor</th><th>Email</th><th>Amount</th><th>Type</th><th>Date</th><th>Status</th><th>Action</th></tr>
+                </thead>
+                <tbody id="donTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Breakdown bars -->
+          <div class="admin-card">
+            <div class="admin-card-header"><h3>Amount breakdown</h3></div>
+            <div style="padding: 20px 24px;" id="donBreakdown"></div>
+          </div>
+        </div>
+
+      </div><!-- /admin-content -->
+    </div><!-- /admin-main -->
+  </div>
+</div>
+
+<script>
+/* ── AUTH ── */
+function doLogin() {
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value;
+  if (u === 'admin' && p === 'happyminds2026') {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('adminDashboard').style.display = 'block';
+    initData();
+  } else {
+    document.getElementById('loginError').style.display = 'block';
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('loginPass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+  document.getElementById('todayDate').textContent = new Date().toLocaleDateString('en-ZA', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+});
+function doLogout() {
+  document.getElementById('adminDashboard').style.display = 'none';
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('loginUser').value = '';
+  document.getElementById('loginPass').value = '';
+}
+
+/*TABS*/
+function showTab(tab, el) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  el.classList.add('active');
+  document.getElementById('pageTitle').textContent = tab === 'volunteers' ? 'Volunteer applications' : 'Donation records';
+}
+
+/*DATA */
+const volunteers = [
+  { id:1, name:'Thandiwe Nkosi',     email:'thandiwe@gmail.com',     phone:'071 234 5678', role:'Teaching Assistant', date:'2026-06-14', status:'Pending',  note:'Former primary school teacher.' },
+  { id:2, name:'Sipho Dlamini',      email:'sipho.d@outlook.com',    phone:'082 876 4321', role:'Mentor',             date:'2026-06-12', status:'Approved', note:'Available weekends.' },
+  { id:3, name:'Amara Diallo',       email:'amara.d@gmail.com',      phone:'060 111 2233', role:'Event Coordinator',  date:'2026-06-10', status:'Pending',  note:'Event management background.' },
+  { id:4, name:'Lerato Molefe',      email:'lerato.m@yahoo.com',     phone:'073 999 0011', role:'Teaching Assistant', date:'2026-06-08', status:'Approved', note:'' },
+  { id:5, name:'James van der Berg', email:'jvdberg@webmail.co.za',  phone:'084 567 8901', role:'Mentor',             date:'2026-05-30', status:'Rejected', note:'Unavailable in required hours.' },
+  { id:6, name:'Priya Naidoo',       email:'priya.n@gmail.com',      phone:'079 445 6677', role:'Other',              date:'2026-05-27', status:'Approved', note:'Graphic design skills.' },
+  { id:7, name:'Kabelo Setshedi',    email:'kabelo.s@gmail.com',     phone:'065 334 2288', role:'Teaching Assistant', date:'2026-06-17', status:'Pending',  note:'Mathematics graduate.' },
+];
+
+const donations = [
+  { id:1, name:'Sarah Botha',       email:'sarah.b@gmail.com',       amount:500,  freq:'Monthly',  date:'2026-06-15' },
+  { id:2, name:'Marcus Williams',   email:'m.williams@work.co.za',   amount:1000, freq:'One-time', date:'2026-06-13' },
+  { id:3, name:'Thabo Khumalo',     email:'thabo.k@gmail.com',       amount:250,  freq:'Monthly',  date:'2026-06-11' },
+  { id:4, name:'Nadia Petersen',    email:'nadia.p@icloud.com',      amount:100,  freq:'One-time', date:'2026-06-09' },
+  { id:5, name:'Johan Pretorius',   email:'j.pretorius@mail.co.za',  amount:50,   freq:'Monthly',  date:'2026-06-07' },
+  { id:6, name:'Fatima Osman',      email:'fatima.o@gmail.com',      amount:500,  freq:'One-time', date:'2026-05-30' },
+  { id:7, name:'David Sithole',     email:'david.s@hotmail.com',     amount:200,  freq:'One-time', date:'2026-05-28' },
+  { id:8, name:'Zanele Mokoena',    email:'zanele.m@gmail.com',      amount:750,  freq:'Monthly',  date:'2026-05-25' },
+];
+
+/*VOLUNTEERS*/
+function renderVolunteers() {
+  const sf = document.getElementById('vol-filter').value;
+  const rf = document.getElementById('vol-role-filter').value;
+  const rows = volunteers.filter(v => (sf==='all'||v.status===sf) && (rf==='all'||v.role===rf));
+  const tbody = document.getElementById('volTableBody');
+  if (!rows.length) {
+    tbody.innerHTML = `<tr><td colspan="7"><div class="empty-state"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><p>No applications match this filter.</p></div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = rows.map(v => `
+    <tr>
+      <td class="name-cell"><strong>${v.name}</strong>${v.note?`<small>${v.note}</small>`:''}</td>
+      <td class="muted">${v.email}</td>
+      <td class="muted">${v.phone}</td>
+      <td>${v.role}</td>
+      <td class="muted">${fmtDate(v.date)}</td>
+      <td>${statusBadge(v.status)}</td>
+      <td>${v.status==='Pending'
+        ? `<button class="action-btn btn-approve" onclick="updateVol(${v.id},'Approved')">Approve</button><button class="action-btn btn-reject" onclick="updateVol(${v.id},'Rejected')">Reject</button>`
+        : `<button class="action-btn btn-view" onclick="alert('Record for ${v.name}\\nRole: ${v.role}\\nStatus: ${v.status}')">View</button>`}
+      </td>
+    </tr>`).join('');
+}
+
+function updateVol(id, s) {
+  const v = volunteers.find(x => x.id===id);
+  if (v) { v.status=s; renderVolunteers(); updateVolStats(); renderRoleBreakdown(); }
+}
+
+function statusBadge(s) {
+  if (s==='Approved') return `<span class="badge badge-green">✓ Approved</span>`;
+  if (s==='Rejected') return `<span class="badge badge-red">✕ Rejected</span>`;
+  return `<span class="badge badge-amber">● Pending</span>`;
+}
+
+function updateVolStats() {
+  const total    = volunteers.length;
+  const pending  = volunteers.filter(v=>v.status==='Pending').length;
+  const approved = volunteers.filter(v=>v.status==='Approved').length;
+  const month    = volunteers.filter(v=>v.date.startsWith('2026-06')).length;
+  document.getElementById('vol-total').textContent    = total;
+  document.getElementById('vol-pending').textContent  = pending;
+  document.getElementById('vol-pending-sub').textContent = pending>0?'needs review':'all clear';
+  document.getElementById('vol-approved').textContent = approved;
+  document.getElementById('vol-month').textContent    = month;
+  const badge = document.getElementById('pendingBadge');
+  badge.textContent = pending;
+  badge.style.display = pending>0 ? 'flex' : 'none';
+}
+
+function renderRoleBreakdown() {
+  const roles = ['Teaching Assistant','Mentor','Event Coordinator','Other'];
+  const total = volunteers.length;
+  const el = document.getElementById('roleBreakdown');
+  el.innerHTML = roles.map(r => {
+    const count = volunteers.filter(v=>v.role===r).length;
+    const pct = total ? Math.round(count/total*100) : 0;
+    return `
+      <div style="margin-bottom:18px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <span style="font-size:0.85rem;font-weight:500;">${r}</span>
+          <span style="font-size:0.8rem;color:#9aada8;">${count} <span style="color:#d94a2b;">(${pct}%)</span></span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+      </div>`;
+  }).join('');
+}
+
+/* DONATIONS */
+function renderDonations() {
+  const ff = document.getElementById('don-filter').value;
+  const rows = ff==='all' ? donations : donations.filter(d=>d.freq===ff);
+  const tbody = document.getElementById('donTableBody');
+  if (!rows.length) {
+    tbody.innerHTML = `<tr><td colspan="7"><div class="empty-state"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><p>No donations match this filter.</p></div></td></tr>`;
+    return;
+  }
+  tbody.innerHTML = rows.map(d => `
+    <tr>
+      <td class="name-cell"><strong>${d.name}</strong></td>
+      <td class="muted">${d.email}</td>
+      <td class="amount-cell">R${d.amount.toLocaleString()}</td>
+      <td><span class="badge ${d.freq==='Monthly'?'badge-blue':'badge-gray'}">${d.freq}</span></td>
+      <td class="muted">${fmtDate(d.date)}</td>
+      <td><span class="badge badge-green">✓ Confirmed</span></td>
+      <td><button class="action-btn btn-receipt" onclick="alert('Receipt sent to ${d.email}')">Send receipt</button></td>
+    </tr>`).join('');
+}
+
+function updateDonStats() {
+  const total = donations.reduce((s,d)=>s+d.amount,0);
+  const month = donations.filter(d=>d.date.startsWith('2026-06')).reduce((s,d)=>s+d.amount,0);
+  document.getElementById('don-total').textContent = `R${total.toLocaleString()}`;
+  document.getElementById('don-month').textContent = `R${month.toLocaleString()}`;
+  document.getElementById('don-count').textContent = donations.length;
+  document.getElementById('don-avg').textContent   = `R${Math.round(total/donations.length).toLocaleString()}`;
+}
+
+function renderDonBreakdown() {
+  const tiers = [{label:'R50–R199',min:50,max:199},{label:'R200–R499',min:200,max:499},{label:'R500–R999',min:500,max:999},{label:'R1 000+',min:1000,max:Infinity}];
+  const total = donations.length;
+  const el = document.getElementById('donBreakdown');
+  el.innerHTML = tiers.map(t => {
+    const count = donations.filter(d=>d.amount>=t.min&&d.amount<=t.max).length;
+    const pct = total ? Math.round(count/total*100) : 0;
+    const sum = donations.filter(d=>d.amount>=t.min&&d.amount<=t.max).reduce((s,d)=>s+d.amount,0);
+    return `
+      <div style="margin-bottom:18px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+          <span style="font-size:0.85rem;font-weight:500;">${t.label}</span>
+          <span style="font-size:0.8rem;color:#9aada8;">${count} donor${count!==1?'s':''} · <span style="color:#d94a2b;">R${sum.toLocaleString()}</span></span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" style="width:${pct}%;background:#1a4dad;"></div></div>
+      </div>`;
+  }).join('');
+}
+
+/* UTILS */
+function fmtDate(d) { return new Date(d).toLocaleDateString('en-ZA',{day:'numeric',month:'short',year:'numeric'}); }
+
+function initData() {
+  updateVolStats();
+  renderVolunteers();
+  renderRoleBreakdown();
+  updateDonStats();
+  renderDonations();
+  renderDonBreakdown();
+}
+</script>
+</body>
+</html>

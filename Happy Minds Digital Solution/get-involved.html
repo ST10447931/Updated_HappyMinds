@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Involved — Happy Minds</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+<div class="nav-bar">
+        <span class="logo-text">Happy Minds</span></a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="programs.html">Programs</a></li><li><a href="impact.html">Impact</a></li><li><a href="get-involved.html" class="active">Get involved</a></li><li><a href="resources.html">Resources</a></li><li><a href="contact.html">Contact</a></li></ul><a href="donate.html" class="donate-btn">Donate</a><button class="mobile-menu-btn" id="menuToggle">☰</button></div><div class="mobile-nav" id="mobileNav"><a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a><a href="impact.html">Impact</a><a href="get-involved.html">Get involved</a><a href="resources.html">Resources</a><a href="contact.html">Contact</a><a href="donate.html">Donate</a></div></div></header>
+
+<main>
+  <div class="page-hero"><div class="container"><h1>Get Involved</h1><p>Join our community of changemakers and help transform lives through education</p></div></div>
+
+  <section style="padding: 70px 0;">
+    <div class="container">
+      <div style="display: flex; gap: 30px; flex-wrap: wrap; margin-bottom: 60px;">
+        <div style="flex: 1; background: #d94a2b; color: white; border-radius: 28px; padding: 40px; text-align: center;"><div style="font-size: 3rem;"></div><h3 style="margin: 16px 0;">Donate</h3><p>Financial contributions help us provide materials and reach more children.</p><a href="donate.html" class="btn-primary" style="background: white; color: #d94a2b; margin-top: 20px; display: inline-block;">Donate now</a></div>
+        <div style="flex: 1; background: #1e2a2f; color: white; border-radius: 28px; padding: 40px; text-align: center;"><div style="font-size: 3rem;"></div><h3 style="margin: 16px 0;">Volunteer</h3><p>Share your time and skills — teaching, mentoring, or helping events.</p><a href="#volunteer-form" class="btn-outline" style="border-color: white; color: white; margin-top: 20px; display: inline-block;">Sign up</a></div>
+        <div style="flex: 1; background: #4a5b56; color: white; border-radius: 28px; padding: 40px; text-align: center;"><div style="font-size: 3rem;"></div><h3 style="margin: 16px 0;">Partner</h3><p>Organizations can amplify impact through corporate partnerships.</p><a href="contact.html" class="btn-outline" style="border-color: white; color: white; margin-top: 20px; display: inline-block;">Contact us</a></div>
+      </div>
+
+      <h2 class="section-title">Volunteer opportunities</h2>
+      <div class="programs-grid" style="margin-bottom: 50px;">
+        <div class="program-card"><h3>Teaching Assistant</h3><p style="color: #4a5b56;">Help educators with lesson delivery and student support.</p><p style="margin-top: 12px; color: #d94a2b; font-size: 0.85rem;">4-8 hours/week</p></div>
+        <div class="program-card"><h3>Mentor</h3><p style="color: #4a5b56;">Provide one-on-one guidance to a student throughout the year.</p><p style="margin-top: 12px; color: #d94a2b; font-size: 0.85rem;">2-4 hours/week</p></div>
+        <div class="program-card"><h3>Event Coordinator</h3><p style="color: #4a5b56;">Help organize community events and fundraisers.</p><p style="margin-top: 12px; color: #d94a2b; font-size: 0.85rem;">Project-based</p></div>
+      </div>
+
+      <div id="volunteer-form" style="background: #f9f6f0; border-radius: 32px; padding: 48px; max-width: 700px; margin: 0 auto;">
+        <h2 class="text-center" style="margin-bottom: 24px;">Ready to help?</h2>
+        <form id="volunteerForm">
+          <div class="form-group"><label>Full name</label><input type="text" required></div>
+          <div class="form-group"><label>Email</label><input type="email" required></div>
+          <div class="form-group"><label>Phone</label><input type="tel"></div>
+          <div class="form-group"><label>How would you like to help?</label><select><option>Teaching Assistant</option><option>Mentor</option><option>Event Coordinator</option><option>Other</option></select></div>
+          <div class="form-group"><label>Anything else you'd like to share?</label><textarea rows="3"></textarea></div>
+          <button type="submit" class="btn-primary" style="width: 100%;">Submit application</button>
+          <p id="volFeedback" style="margin-top: 16px; font-size: 0.85rem;"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer><div class="container"><div class="footer-grid"><div class="footer-col"><h4>Happy Minds</h4><p>Building brighter futures through creative education.</p></div>
+<div class="footer-col"><h4>Connect</h4><a href="#">hello@happyminds.org</a><a href="#">Pretoria, SA</a></div>
+<div class="footer-col"><h4>Quick links</h4><a href="about.html">About</a><a href="donate.html">Donate</a></div></div>
+<div class="footer-bottom"><p>© 2026 Happy Minds — Education trust. · <a href="admin.html" style="color:#4a6560;font-size:0.8rem;opacity:0.6;">Staff login</a></p>
+</div>
+</div>
+</footer>
+
+<script>
+  const toggleBtn=document.getElementById('menuToggle');const mobileNav=document.getElementById('mobileNav');toggleBtn.addEventListener('click',()=>mobileNav.classList.toggle('show'));
+  document.getElementById('volunteerForm')?.addEventListener('submit',(e)=>{e.preventDefault();document.getElementById('volFeedback').innerText='Thanks! We’ll be in touch soon.';document.getElementById('volFeedback').style.color='#2e6b4e';e.target.reset();});
+</script>
+</body>
+</html>

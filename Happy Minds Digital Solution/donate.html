@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donate — Happy Minds</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="nav-bar">
+        <span class="logo-text">Happy Minds</span>
+      </a>
+    <ul class="nav-links"><li><a href="index.html">Home</a></li><li>
+                <a href="about.html">About</a></li><li><a href="programs.html">Programs</a></li><li><a href="impact.html">Impact</a></li><li><a href="get-involved.html">Get involved</a></li><li><a href="resources.html">Resources</a></li><li><a href="contact.html">Contact</a></li></ul><a href="donate.html" class="donate-btn">Donate</a><button class="mobile-menu-btn" id="menuToggle">☰</button></div><div class="mobile-nav" id="mobileNav"><a href="index.html">Home</a><a href="about.html">About</a><a href="programs.html">Programs</a><a href="impact.html">Impact</a><a href="get-involved.html">Get involved</a><a href="resources.html">Resources</a><a href="contact.html">Contact</a><a href="donate.html">Donate</a></div></div></header>
+
+<main>
+  <div style="background: linear-gradient(135deg, #d94a2b, #b83a1f); color: white; padding: 70px 0; text-align: center;">
+    <div class="container"><h1 style="font-size: 3rem;">Support Our Mission</h1><p style="font-size: 1.2rem; margin-top: 16px;">Your generosity transforms lives. 100% of donations go directly to our programs.</p></div>
+  </div>
+
+  <section style="padding: 70px 0;">
+    <div class="container"><h2 class="section-title">Choose an amount</h2>
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;">
+        <div style="background: #f9f6f0; border-radius: 20px; padding: 32px; text-align: center; min-width: 150px;"><h3 style="font-size: 2rem; color: #d94a2b;">R50</h3><p style="color: #4a5b56;">School supplies<br>for 1 child/month</p></div>
+        <div style="background: #f9f6f0; border-radius: 20px; padding: 32px; text-align: center; min-width: 150px;"><h3 style="font-size: 2rem; color: #d94a2b;">R100</h3><p style="color: #4a5b56;">Supports a child's<br>education for 1 month</p></div>
+        <div style="background: #f9f6f0; border-radius: 20px; padding: 32px; text-align: center; min-width: 150px;"><h3 style="font-size: 2rem; color: #d94a2b;">R250</h3><p style="color: #4a5b56;">Learning kit<br>for 3 children</p></div>
+        <div style="background: #f9f6f0; border-radius: 20px; padding: 32px; text-align: center; min-width: 150px;"><h3 style="font-size: 2rem; color: #d94a2b;">R500</h3><p style="color: #4a5b56;">Sponsors a child<br>for full semester</p></div>
+      </div>
+
+     <div style="max-width: 600px; margin: 0 auto; background: white; border-radius: 32px; padding: 40px; box-shadow: 0 4px 20px rgba(0,0,0,0.05);">
+  <form id="donateForm">
+    <div class="form-group">
+      <label>Donation amount (R)</label>
+      <input type="number" placeholder="Enter amount" value="50" required>
+    </div>
+    <div class="form-group">
+      <label>Frequency</label>
+      <select>
+        <option>One-time</option>
+        <option>Monthly</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Full name</label>
+      <input type="text" name="full_name" required placeholder="e.g.,Thapelo">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" required placeholder="e.g., Thapelo@gmail.com">
+    </div>
+    <div class="form-group">
+      <label>Payment details</label>
+      <input type="text" placeholder="Card number">
+      <input type="text" placeholder="CVC" style="margin-top: 8px;">
+    </div>
+
+    <div class="form-group">
+      <label>Account Number</label>
+      <input type="text" placeholder="Account number" style="margin-top: 8px;">
+    </div>
+
+    <div class="form-group">
+      <label>Bank transfer details</label>
+      <input type="text" value="Bank: First National Bank (FNB)" readonly style="background: #f8f9fa; color: #6c757d; cursor: default;">
+      <input type="text" value="Account number: 62847301956" readonly style="background: #f8f9fa; color: #6c757d; margin-top: 8px; cursor: default;">
+      <input type="text" name="reference" placeholder="Reference: Your Full Name" style="margin-top: 8px;">
+    </div>
+    <button type="submit" class="btn-primary" style="width: 100%;">Complete donation</button>
+    <p id="donateFeedback" style="margin-top: 16px; font-size: 0.85rem; text-align: center;"></p>
+  </form>
+</div>
+    </div>
+  </section>
+
+  <section style="background: #f4efe8; padding: 60px 0; text-align: center;">
+    <div class="container"><h2 style="margin-bottom: 16px;">Tax-deductible</h2><p>Happy Minds is a registered non-profit. You'll receive a receipt for tax purposes.</p><p style="margin-top: 8px; font-size: 0.85rem;">Tax ID: 12-876</p></div>
+  </section>
+</main>
+
+<footer><div class="container"><div class="footer-grid"><div class="footer-col"><h4>Happy Minds</h4></div><div class="footer-col"><h4>Secure giving</h4><a href="#">Privacy policy</a></div><div class="footer-col"><h4>Questions?</h4><a href="contact.html">Contact us</a></div></div><div class="footer-bottom"><p>© 2026 Happy Minds</p></div></div></footer>
+
+<script>
+  const toggleBtn=document.getElementById('menuToggle');const mobileNav=document.getElementById('mobileNav');toggleBtn.addEventListener('click',()=>mobileNav.classList.toggle('show'));
+  document.getElementById('donateForm')?.addEventListener('submit',(e)=>{e.preventDefault();document.getElementById('donateFeedback').innerText='Thank you for your generosity! A receipt has been sent to your email.';document.getElementById('donateFeedback').style.color='#2e6b4e';e.target.reset();});
+</script>
+</body>
+</html>
